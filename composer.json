@@ -1,0 +1,28 @@
+{
+  "name": "pialechini/liberator",
+  "description": "A php library to liberate private/protected methods and properties. Useful for testing purposes.",
+  "type": "library",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "PialeChini",
+      "email": "mobinzohourian@gmail.com"
+    }
+  ],
+  "require": {
+    "php": ">=7.3",
+    "phpunit/phpunit": "9.5.x-dev"
+  },
+  "autoload": {
+    "psr-4": {
+      "Pialechini\\Liberator\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Tests\\": "tests/"
+    }
+  },
+  "minimum-stability": "dev",
+  "prefer-stable": true
+}

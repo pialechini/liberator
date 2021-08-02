@@ -1,22 +1,26 @@
-
 # PHP Liberator
-A php library to liberate private/protected methods and properties for read/write/call access. Useful for testing purposes
+
+A php library to liberate private/protected methods and properties for read/write/call access. Useful for testing
+purposes
 
 ---
 
 ## Installation
+
 ``
 composer require-dev pialechini/liberator  
 ``
 > Note
-> 
->> You can install it as a required dependency and use it in production
->> but you **should not**! It is harmful to access  private/protected properties and methods out of the class.
+>
+> You can install it as a required dependency and use it in production
+> but you **should not**! It is harmful to access  private/protected properties and methods out of the class.
 
 ---
 
 ## Usage
+
 Imagine you have a class like this:
+
 * Product
     * **private** `$name`
     * **private** `$price`
@@ -24,8 +28,7 @@ Imagine you have a class like this:
     * **public function setPrice** (`$price`)
     * **public function getPrice** ()
 
-Then you want to do your job with this class and make assertions
-on the properties above.
+Then you want to do your job with this class and make assertions on the properties above.
 
 ### Steps:
 
@@ -34,9 +37,11 @@ on the properties above.
 3. Use `$liberator` in your assertions
 
 Or you can swap second step with the first step. Therefore, It would be like this:
+
 1. Do anything that you want with `$product`.
 2. Create new instance of `Liberator` and pass `$product` to its constructor.
 3. Use `$liberator` in your assertions
+
 ```php
 // inside a test
 // ===================================================
@@ -53,14 +58,15 @@ $this->assertEquals('Book', $liberator->get('name'));
 // ===================================================
 
 ```
-Another method in Liberator is `call()` which allows you to call 
-any class method in object context.
 
-Finally, there is a `restore()` method in Liberator. It returns
-The given object in the constructor as it was whenever you want.
+Another method in Liberator is `call()` which allows you to call any class method in object context.
+
+Finally, there is a `restore()` method in Liberator. It returns The given object in the constructor as it was whenever
+you want.
 (Think it as a backup)
 
 Take a look at the code below:
+
 ```php
 $product = new Product();
 $product->setPrice(300);
@@ -78,8 +84,11 @@ $liberator->restore();
 $liberator->get('price'); // will return 300
 $product->getPrice(); // will return 300
 ```
+
 ---
+
 ## Public Liberator::class methods
+
 ```php
 public function call (string $method, ...$arguments) : mixed
 public function get (string $property) : mixed
