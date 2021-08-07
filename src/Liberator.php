@@ -90,6 +90,20 @@ class Liberator
 	}
 
 	/**
+	 * Make a backup from current object
+	 */
+	protected function backup ()
+	{
+		$this->backup = $this->invokeClosure(function () {
+			foreach (get_object_vars($this) as $key => $value)
+			{
+				$backup[ $key ] = is_object($value) ? clone $value : $value;
+			}
+			return $backup ?? [];
+		});
+	}
+
+	/**
 	 * Bind the given closure to the object
 	 *
 	 * @param Closure $closure
@@ -112,16 +126,5 @@ class Liberator
 	protected function invokeClosure (Closure $closure, ...$arguments)
 	{
 		return $this->bindClosure($closure)(...$arguments);
-	}
-
-	private function backup ()
-	{
-		$this->backup = $this->invokeClosure(function () {
-			foreach (get_object_vars($this) as $key => $value)
-			{
-				$backup[ $key ] = is_object($value) ? clone $value : $value;
-			}
-			return $backup ?? [];
-		});
 	}
 }
