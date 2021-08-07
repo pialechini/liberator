@@ -8,7 +8,7 @@ purposes
 ## Installation
 
 ``
-composer require-dev pialechini/liberator  
+composer require pialechini/liberator --dev
 ``
 > Note
 >
@@ -61,9 +61,7 @@ $this->assertEquals('Book', $liberator->get('name'));
 
 Another method in Liberator is `call()` which allows you to call any class method in object context.
 
-Finally, there is a `restore()` method in Liberator. It returns The given object in the constructor as it was whenever
-you want.
-(Think it as a backup)
+Finally, there is a `restore()` method in Liberator. It turns the given object into its original state (as it was in liberator's constructor. Think of it as a backup).
 
 Take a look at the code below:
 
@@ -87,7 +85,7 @@ $product->getPrice(); // will return 300
 
 ---
 
-## Public Liberator::class methods
+## Class methods
 
 ```php
 public function call (string $method, ...$arguments) : mixed
